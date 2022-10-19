@@ -1,0 +1,29 @@
+main {
+    width: 800px;
+    margin: 75px auto;
+}
+
+.register {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.message {
+    text-align: center;
+    margin: 50px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+form button {
+    margin: 20px;
+    padding: 7px;
+    border-radius: 7px;
+    font-weight: 700;
+    background: white;
+}
+
+form button:hover {
+    cursor: pointer;
+    background: green;
+}
