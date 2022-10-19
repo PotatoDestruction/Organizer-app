@@ -1,0 +1,19 @@
+.participants-h {
+    text-align: center;
+}
+
+.no-participants {
+    text-align: center;
+    color: red;
+}
+
+table {
+    border: 2px solid black;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+tr, th, td {
+    border: 2px solid black;
+}

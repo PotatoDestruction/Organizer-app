@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Form from "../Form/Form";
 import { useNavigate } from 'react-router-dom'
 import './Register.css'
+import { RegInfo } from "./RegisterTypes";
 
 const Register = (): JSX.Element => {
 
@@ -25,8 +26,11 @@ const Register = (): JSX.Element => {
             <Form fetch={(event) => {
                 event.preventDefault();
 
-
-                console.log(name, pass, passConfirm)
+                const organizerReg: RegInfo = {
+                    user_name: name.charAt(0).toUpperCase() + name.slice(1),
+                    password: pass,
+                    regTime: dateTime
+                }
 
                 fetch(`http://localhost:8080/v1/organizers/${name}`)
                     .then(res => res.json())
@@ -39,11 +43,7 @@ const Register = (): JSX.Element => {
                                         'Accept': 'application/json',
                                         'Content-Type': 'application/json'
                                     },
-                                    body: JSON.stringify({
-                                        user_name: name,
-                                        password: pass,
-                                        regTime: dateTime,
-                                    })
+                                    body: JSON.stringify( organizerReg )
                                 })
                                     .then(res => res.json())
                                     .then(res => {
