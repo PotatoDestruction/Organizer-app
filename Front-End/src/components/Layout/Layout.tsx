@@ -12,24 +12,24 @@ const Layout = ({ children }: LayoutProps) => {
     const [status, setStatus] = useState('')
     const navigate = useNavigate();
 
-    const token = localStorage.getItem("token");
-    const email = localStorage.getItem('email');
+    const token: string | null = localStorage.getItem("token");
+    const user_name: string | null = localStorage.getItem('user_name');
 
     useEffect(() => {
-        if (token && email) {
+        if (token && user_name) {
             setStatus('on');
-            setUser(email);
-            console.log(email)
+            setUser(user_name);
         } else {
             setStatus('');
             setUser('')
         }
-    }, [])
+    }, [token, user_name])
 
     const logout = (): void => {
-        localStorage.clear();
+        localStorage.clear();      
         setTimeout(() => {
-            navigate('/register')
+            setStatus('');
+            navigate('/login')
         }, 1000)
     }
 
@@ -37,7 +37,9 @@ const Layout = ({ children }: LayoutProps) => {
         <div>
             <header>
                 <Link className='logo' to='/register'>
-                    <img src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' alt='logo' />
+                    <img src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' alt='logo' onClick={(): void => {
+                        localStorage.clear();
+                    }} />
                 </Link>
 
                 <div className='links-userStatus'>
@@ -62,7 +64,7 @@ const Layout = ({ children }: LayoutProps) => {
                 </div>
             </header>
             {children}
-            <footer>Footar</footer>
+            <footer>© 2022 Potato, Inc.</footer>
         </div>
     )
 }

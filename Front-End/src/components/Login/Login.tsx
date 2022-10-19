@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import Form from "../Form/Form";
+import { LogType } from "./Regtype";
 
-const Login = () => {
+const Login = (): JSX.Element => {
 
     const [message, setMessage] = useState('')
+    const [name, setName] = useState('');
+    const [pass, setPass] = useState('');
     const navigate = useNavigate();
 
     return (
@@ -13,45 +16,55 @@ const Login = () => {
             <h1 className="login">Login</h1>
             <Form fetch={(event) => {
                 event.preventDefault();
-                const email = document.getElementById('email1') as HTMLInputElement
-                const password = document.getElementById('password1') as HTMLInputElement
-                fetch('http://localhost:8079/v1/users/login', {
+
+                const organizerLog: LogType = {
+                    user_name: name,
+                    password: pass,
+                }
+
+                fetch('http://localhost:8080/v1/organizers/login', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        email: email.value,
-                        password: password.value,
-                    })
+                    body: JSON.stringify( organizerLog )
                 })
                     .then(res => res.json())
                     .then(res => {
-                        if (res.error) {
-                            setMessage(res.error);
-                            console.log(res.error)
+                        if (res.loginError) {
+                            setMessage(res.loginError);
                         } else {
-                            setMessage('Logged in!')
-                            console.log(res)
+                            setMessage('Logged in !')
                             localStorage.setItem('token', res.token);
-                            localStorage.setItem('email', res.email)
+                            localStorage.setItem('user_name', res.user_name);
+                            localStorage.setItem('organizer_id', res.organizer_id);
                             setTimeout((): void => {
-                                navigate('/login')
+                                navigate('/participants');
                             }, 2000)
                         }
                     })
                     .catch(error => console.log(error));
+
             }}>
-
-                <label>Email:</label>
-                <input type="email" name="email" id="email1" required minLength={4} maxLength={30} />
+                <label>User Name:</label>
+                <input type="name" name="name" required minLength={3} maxLength={25}
+                    value={name}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        let newValue = e.target.value
+                        setName(newValue);
+                    }}
+                />
                 <label>Pasword:</label>
-                <input type="password" name="password" id="password1" required minLength={3} maxLength={18} />
+                <input type="password" name="password" required minLength={3} maxLength={18}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        let newValue = e.target.value
+                        setPass(newValue);
+                    }}
+                />
                 <div>
-                    <button type="submit">Register</button>
+                    <button type="submit">Login</button>
                 </div>
-
             </Form>
             {message && <div className="message">{message}</div>}
         </div>

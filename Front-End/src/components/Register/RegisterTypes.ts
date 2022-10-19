@@ -1,4 +1,5 @@
 export type RegInfo = {
-    email: string;
+    user_name: string;
     password: string;
+    regTime: string;
 }

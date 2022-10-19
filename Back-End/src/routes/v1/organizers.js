@@ -25,9 +25,9 @@ router.get('/:user_name', async (req, res) => {
     let checkIfAlreadyExists = req.params.user_name
     try {
         const con = await mysql.createConnection(dbConfig);
-        const [resp] = await con.query('SELECT id, user_name FROM organizers WHERE user_name = ?', [checkIfAlreadyExists]);
+        const [response] = await con.query('SELECT id, user_name FROM organizers WHERE user_name = ?', [checkIfAlreadyExists]);
         con.end();
-        res.send(resp);
+        res.send(response);
     }catch(err){
         console.log(err)
         res.status(500).send( { error: 'Something went wrong . . .' } )
@@ -72,21 +72,21 @@ router.post('/login', async (req, res) => {
     try {
         
         const con = await mysql.createConnection(dbConfig);
-        const [login] = await con.query('SELECT id, password, user_name FROM organizers WHERE user_name = ?', [organizerLogin.user_name]);
+        const [response] = await con.query('SELECT id, password, user_name FROM organizers WHERE user_name = ?', [organizerLogin.user_name]);
 
         con.end();
 
-        if(!login.length) {
-            return res.status(400).send({error: 'Invalid user name or password'});
+        if(!response.length) {
+            return res.status(400).send({loginError: 'Invalid user name or password'});
         }
 
-        const checkPassowrd = bcrypt.compareSync(organizerLogin.password, login[0].password);
+        const checkPassowrd = bcrypt.compareSync(organizerLogin.password, response[0].password);
         if(!checkPassowrd) {
-            return res.status(400).send({error: 'Invalid user name or password'});
+            return res.status(400).send({loginError: 'Invalid user name or password'});
         }
-        const token = jwt.sign({organizer_id: login[0].id}, jwtSecret);
+        const token = jwt.sign({organizer_id: response[0].id}, jwtSecret);
         
-        res.send( { token, organizer_id: login[0].id, user_name: organizerLogin.user_name } );
+        res.send( { token, organizer_id: response[0].id, user_name: organizerLogin.user_name } );
     }catch(err){
         res.status(500).send( { error: 'Something went wrong . . .' } );
     }

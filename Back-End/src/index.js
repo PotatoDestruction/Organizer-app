@@ -3,7 +3,7 @@ const cors = require('cors');
 
 const { port } = require('./config.js');
 
-const { organizers } = require('./routes/v1');
+const { organizers, participants } = require('./routes/v1');
 
 const app = express();
 
@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(cors());
 
 
-app.use('/v1/organizers/', organizers);
-
+app.use('/v1/organizers', organizers);
+app.use('/v1/participants', participants);
 
 
 app.get('/', (req, res) => {
@@ -24,5 +24,5 @@ app.all('*', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`ONLINE.... ${port}`)
+    console.log(`Connected - ${port}`)
 });
