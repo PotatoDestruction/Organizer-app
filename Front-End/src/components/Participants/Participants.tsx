@@ -3,14 +3,13 @@ import { useEffect, useState } from 'react';
 import { ParticipantsT, ModalDetails, AddParticipant } from './ParticipantsInterface'
 import UpdateModal from './UpdateModal';
 import Form from '../Form/Form';
+import { useNavigate } from 'react-router-dom';
 
 
-const token: string | null = localStorage.getItem('token');
-const organizer_id: string | null = localStorage.getItem('organizer_id')
 
 const Participants = (): JSX.Element => {
-
-
+    const [organizer_id, setOrganizer_id] = useState<string | null>(localStorage.getItem('organizer_id'))
+    const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
     const [participants, setParticipants] = useState<ParticipantsT[]>([{
         id: 0,
         name: '',
@@ -27,7 +26,7 @@ const Participants = (): JSX.Element => {
         surname: '',
         email: '',
         age: 0
-    }])
+    }]);
     const [addFromOnOff, setAddFromOnOff] = useState('off');
     const [addParticipant, setAddParticipant] = useState<AddParticipant>({
         name: '',
@@ -35,10 +34,14 @@ const Participants = (): JSX.Element => {
         email: '',
         age: 0,
         organizer_id: Number(organizer_id)
-    })
+    });
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        setOrganizer_id(localStorage.getItem('organizer_id'));
+        setToken(localStorage.getItem('token'))
+    }, [])
     
-
     useEffect(() => {
         fetch(`http://localhost:8080/v1/participants/${organizer_id}`, {
             method: "GET",
@@ -63,7 +66,15 @@ const Participants = (): JSX.Element => {
                 }
             })
             .catch(error => console.log(error));
-    }, [reload, addFromOnOff])
+    }, [reload, addFromOnOff, organizer_id, token])
+
+
+    useEffect(() => {
+        if(!token) {          
+            alert('You must login first.')
+            navigate('/login')
+        }
+    })
 
     return (
         <div>

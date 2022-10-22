@@ -16,7 +16,7 @@ function App() {
       <Route path='/' element={<Layout><Register /></Layout>} />
       <Route path='/register' element={<Layout><Register /></Layout>} />
       <Route path='/login' element={<Layout><Login /></Layout>} />      
-      <Route path={token ? '/participants' : '/login'} element={<Layout><Participants /></Layout>} /> 
+      <Route path='/participants' element={<Layout><Participants /></Layout>} /> 
     </Routes>
   );
 }
