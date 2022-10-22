@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require('../config')
 
-const authCheck = (req, res, next) => {
+const authCheck = (req: any, res: any, next: any): void => {
     const auth = req.headers.authorization;
 
     if(!auth) {
@@ -22,6 +22,4 @@ const authCheck = (req, res, next) => {
     }
 
 };
-
-module.exports = { authCheck };
-
+export default authCheck;
