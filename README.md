@@ -1,4 +1,5 @@
 # Organizer-app
 
-Back-End - npm run dev
+Back-End - npm run dev,
+
 Front-End - npm start
