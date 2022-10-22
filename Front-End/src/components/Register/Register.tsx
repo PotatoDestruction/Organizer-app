@@ -23,7 +23,7 @@ const Register = (): JSX.Element => {
     return (
         <main>
             <h1 className="register">Register account</h1>
-            <Form fetch={(event) => {
+            <Form className="def-form" fetch={(event) => {
                 event.preventDefault();
 
                 const organizerReg: RegInfo = {
@@ -72,7 +72,7 @@ const Register = (): JSX.Element => {
                     value={name}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         let newValue = e.target.value
-                        setName(newValue);
+                        setName(newValue.charAt(0).toUpperCase() + newValue.slice(1));
                     }}
                 />
                 <label>Pasword:</label>
@@ -90,7 +90,7 @@ const Register = (): JSX.Element => {
                     }}
                 />
                 <div>
-                    <button type="submit">Register</button>
+                    <button id='reg-log' type="submit">Register</button>
                 </div>
             </Form>
 
