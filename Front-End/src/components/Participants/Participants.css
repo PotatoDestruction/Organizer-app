@@ -93,7 +93,7 @@ th, td {
     font-size: 15px;
 }
 
-.def-form button:hover, .Add-participant:hover {
+.def-form button:hover, .Add-participant:hover, .Update-Delete:hover {
     background-color: white;
     color: blue;
     border-color: blue;
@@ -115,3 +115,12 @@ th, td {
     color: green;
     cursor: pointer;
 }
+
+.Update-Delete {
+    background-color: blue;
+    color: white;
+    border: 2px solid rgba(212, 196, 196, 0.1);
+    margin: 0 4px;
+    font-size: 15px;
+}
+

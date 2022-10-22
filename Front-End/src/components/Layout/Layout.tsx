@@ -26,7 +26,7 @@ const Layout = ({ children }: LayoutProps) => {
     }, [token, user_name])
 
     const logout = (): void => {
-        localStorage.clear();      
+        localStorage.clear();
         setTimeout(() => {
             setStatus('');
             navigate('/login')
@@ -54,6 +54,10 @@ const Layout = ({ children }: LayoutProps) => {
                             localStorage.clear();
                             navigate('/login')
                         }}>Login</div>}
+
+                        {token && <div className="h-link" onClick={() => {
+                            navigate('/participants')
+                        }}>Participants</div>}
 
                     </div>
                     <div className='user-status'>
