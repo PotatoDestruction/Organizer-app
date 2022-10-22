@@ -54,7 +54,7 @@ const Participants = (): JSX.Element => {
             .then(res => res.json())
             .then(res => {
                 if(res.error) {
-                    alert(res.error + ': ' + 'You must Login first!');
+                    alert(`${res.error}: You must Login first!`);
                     navigate('/login');
                 }
                 if (res.length === 0) {
