@@ -64,10 +64,9 @@ const Participants = (): JSX.Element => {
             })
             .catch(error => console.log(error));
     }, [reload, addFromOnOff])
-    console.log(addParticipant)
+
     return (
         <div>
-
             <div className='header-and-ADD'>
                 <h1 className='participants-h'>Your Participants</h1>
                 {addFromOnOff === 'off' && <button className='Add-participant' onClick={() => {
@@ -76,7 +75,7 @@ const Participants = (): JSX.Element => {
             </div>
 
             <div className='add-form-wrap'>
-                {addFromOnOff === 'on' && <Form className='modal-form' id='add-form' fetch={(e) => {
+                {addFromOnOff === 'on' && <Form className='def-form' id='add-form' fetch={(e) => {
                     e.preventDefault();
 
                     fetch('http://localhost:8080/v1/participants/add', {
@@ -126,8 +125,8 @@ const Participants = (): JSX.Element => {
                     <div>
                         <label>Age:</label>
                     </div>
-                    <input type="text" name="age" required pattern='[0-9]{1,3}' title='Age must be numbers.'
-                        minLength={1} maxLength={3}
+                    <input type="text" name="age" required pattern='^[1-9]\d*$' title='Age must be numbers and can&#39;t be 0.'
+                        minLength={1} maxLength={3} min='1'
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             let newValue = e.target.value
                             setAddParticipant({ ...addParticipant, age: Number(newValue) })

@@ -14,7 +14,7 @@ const Login = (): JSX.Element => {
     return (
         <div>
             <h1 className="login">Login</h1>
-            <Form fetch={(event) => {
+            <Form className="def-form" fetch={(event) => {
                 event.preventDefault();
 
                 const organizerLog: LogType = {
@@ -52,7 +52,7 @@ const Login = (): JSX.Element => {
                     value={name}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         let newValue = e.target.value
-                        setName(newValue);
+                        setName(newValue.charAt(0).toUpperCase() + newValue.slice(1));
                     }}
                 />
                 <label>Pasword:</label>
@@ -63,7 +63,7 @@ const Login = (): JSX.Element => {
                     }}
                 />
                 <div>
-                    <button type="submit">Login</button>
+                    <button id="reg-log" type="submit">Login</button>
                 </div>
             </Form>
             {message && <div className="message">{message}</div>}

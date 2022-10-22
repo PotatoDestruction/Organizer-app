@@ -16,7 +16,7 @@ console.log(updated)
       <div>
 
          {participant && <div className="modal-body">
-            <Form className="modal-form" fetch={(e) => {
+            <Form className="def-form" fetch={(e) => {
                e.preventDefault();
 
                fetch(`http://localhost:8080/v1/participants/update/${participant.id}`, {

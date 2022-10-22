@@ -15,15 +15,8 @@ main {
     font-size: 20px;
 }
 
-form button {
-    margin: 20px;
-    padding: 7px;
+#reg-log { 
     border-radius: 7px;
-    font-weight: 700;
-    background: white;
+    padding: 10px;
 }
 
-form button:hover {
-    cursor: pointer;
-    background: green;
-}
