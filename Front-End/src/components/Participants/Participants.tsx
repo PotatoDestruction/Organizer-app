@@ -54,7 +54,7 @@ const Participants = (): JSX.Element => {
             .then(res => res.json())
             .then(res => {
                 if(res.error) {
-                    alert(res.error + ': ' + 'You must Login first!');
+                    alert(`${res.error}: You must Login first!`);
                     navigate('/login');
                 }
                 if (res.length === 0) {
@@ -76,7 +76,7 @@ const Participants = (): JSX.Element => {
             alert('You must login first.')   
         }
         
-    }, [reload, addFromOnOff, organizer_id, token])
+    }, [reload, addFromOnOff, organizer_id, token, navigate])
 
 
     useEffect(() => {
