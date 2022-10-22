@@ -76,7 +76,7 @@ const Participants = (): JSX.Element => {
             alert('You must login first.')   
         }
         
-    }, [reload, addFromOnOff, organizer_id, token])
+    }, [reload, addFromOnOff, organizer_id, token, navigate])
 
 
     useEffect(() => {
