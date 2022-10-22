@@ -1,28 +1,26 @@
-const express = require('express');
+import * as express from "express";
 const mysql = require('mysql2/promise');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Joi = require('joi');
 const { dbConfig, jwtSecret } = require('../../config');
 
 
 const router = express.Router();
 
-const organizerRegistationSchema = Joi.object({
-    user_name: Joi.string().required(),
-    password: Joi.string().required(),
-    regTime: Joi.date().required()
-});
+interface organizerRegistation {
+    user_name: string
+    password: string
+    regTime: string 
+}
 
-const organizerLoginSchema = Joi.object({
-    user_name: Joi.string().required(),
-    password: Joi.string().required()
-});
+interface organizerLogin {
+    user_name: string
+    password: string
+}
 
 
-
-router.get('/:user_name', async (req, res) => {
-    let checkIfAlreadyExists = req.params.user_name
+router.get('/:user_name', async (req: any, res: any) => {
+    let checkIfAlreadyExists: string = req.params.user_name
     try {
         const con = await mysql.createConnection(dbConfig);
         const [response] = await con.query('SELECT id, user_name FROM organizers WHERE user_name = ?', [checkIfAlreadyExists]);
@@ -35,14 +33,7 @@ router.get('/:user_name', async (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    let newOrganizer = req.body;
-
-    try {
-        newOrganizer = await organizerRegistationSchema.validateAsync(newOrganizer);
-    } catch (err) {
-        res.status(400).send(err.details[0].message);
-        return;
-    }
+    let newOrganizer: organizerRegistation = req.body;
 
     try {
         const hashPassword = bcrypt.hashSync(newOrganizer.password);
@@ -59,15 +50,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    let organizerLogin = req.body;
-
-    try{
-        organizerLogin = await organizerLoginSchema.validateAsync(organizerLogin);
-    }catch(err){
-        res.status(500).send(err.details[0].message);
-        return;
-    }
-
+    let organizerLogin: organizerLogin = req.body;
 
     try {
         
@@ -91,7 +74,5 @@ router.post('/login', async (req, res) => {
         res.status(500).send( { error: 'Something went wrong . . .' } );
     }
 });
-
-
 
 module.exports = router;

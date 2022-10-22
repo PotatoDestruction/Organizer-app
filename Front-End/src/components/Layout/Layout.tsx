@@ -37,9 +37,9 @@ const Layout = ({ children }: LayoutProps) => {
         <div>
             <header>
                 <Link className='logo' to='/register'>
-                    <img src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' alt='logo' onClick={(): void => {
+                    <h1  onClick={(): void => {
                         localStorage.clear();
-                    }} />
+                    }} >EventOrganizer</h1>
                 </Link>
 
                 <div className='links-userStatus'>
