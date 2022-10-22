@@ -1,7 +1,7 @@
 import { UpdatedModalDetails } from "./ParticipantsInterface";
 import { useState } from "react";
 import Form from '../Form/Form'
-const UpdateModal = ({ participant, cancel }: any): JSX.Element => {
+const UpdateModal = ({ participant }: any): JSX.Element => {
 
    const token = localStorage.getItem('token');
    const [updated, setUpdated] = useState<UpdatedModalDetails>({
@@ -10,7 +10,6 @@ const UpdateModal = ({ participant, cancel }: any): JSX.Element => {
       email: participant.email,
       age: participant.age
 })
-console.log(updated)
 
    return (
       <div>
