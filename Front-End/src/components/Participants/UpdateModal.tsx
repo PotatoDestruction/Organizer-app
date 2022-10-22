@@ -66,7 +66,7 @@ const UpdateModal = ({ participant }: any): JSX.Element => {
                <div>
                   <label>Birthday:</label>
                </div>
-               <input type="text" name="birthday" required defaultValue={new Date().getFullYear() - participant.age} pattern='[0-9]{4}' title='Birday can only be exacly 4 numbers'
+            <input type="number" name="birthday" min='1922' max={new Date().getFullYear()} required defaultValue={new Date().getFullYear() - participant.age} 
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                      let newValue = e.target.value 
                      setUpdated({...updated , age: (new Date().getFullYear() - Number(newValue))})
