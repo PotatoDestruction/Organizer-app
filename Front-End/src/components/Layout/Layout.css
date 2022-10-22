@@ -1,5 +1,5 @@
 * {
-    font-family: Lucida Console;
+    font-family: Lucida Sans Unicode;
 }
 
 header {
@@ -8,6 +8,7 @@ header {
     padding: 20px 150px;
     align-items: center;
     background-color: rgb(212, 196, 196);
+    margin-bottom: 100px;
 }
 
 .logo {
