@@ -136,8 +136,7 @@ const Participants = (): JSX.Element => {
                     <div>
                         <label>Age:</label>
                     </div>
-                    <input type="text" name="age" required pattern='^[1-9]\d*$' title='Age must be numbers and can&#39;t be 0.'
-                        minLength={1} maxLength={3} min='1'
+                    <input type="number" name="age" required min='1' max='100'
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             let newValue = e.target.value
                             setAddParticipant({ ...addParticipant, age: Number(newValue) })
