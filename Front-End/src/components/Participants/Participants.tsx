@@ -43,7 +43,8 @@ const Participants = (): JSX.Element => {
     }, [])
     
     useEffect(() => {
-        fetch(`http://localhost:8080/v1/participants/${organizer_id}`, {
+        if(token && organizer_id) {
+            fetch(`http://localhost:8080/v1/participants/${organizer_id}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -52,6 +53,10 @@ const Participants = (): JSX.Element => {
         })
             .then(res => res.json())
             .then(res => {
+                if(res.error) {
+                    alert(res.error + ': ' + 'You must Login first!');
+                    navigate('/login');
+                }
                 if (res.length === 0) {
                     setNoParticipantsMessage('You don\'t have any participants.');
                     setParticipants([{
@@ -66,13 +71,17 @@ const Participants = (): JSX.Element => {
                 }
             })
             .catch(error => console.log(error));
+        }else {
+            navigate('/login')
+            alert('You must login first.')   
+        }
+        
     }, [reload, addFromOnOff, organizer_id, token])
 
 
     useEffect(() => {
         if(!token) {          
-            alert('You must login first.')
-            navigate('/login')
+            
         }
     })
 
