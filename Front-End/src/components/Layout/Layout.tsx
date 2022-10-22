@@ -64,7 +64,7 @@ const Layout = ({ children }: LayoutProps) => {
                 </div>
             </header>
             {children}
-            <footer>© 2022 Potato, Inc.</footer>
+            <footer>© 2022 Potatus Fritus, Inc.</footer>
         </div>
     )
 }

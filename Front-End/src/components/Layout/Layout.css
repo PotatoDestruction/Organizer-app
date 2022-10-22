@@ -61,14 +61,12 @@ img {
     font-size: 20px;
 }
 
-/* FOOTER */
-
 footer {
     height: 30px;
     background-color: rgb(212, 196, 196);
     display: flex;
     align-items: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     justify-content: center;

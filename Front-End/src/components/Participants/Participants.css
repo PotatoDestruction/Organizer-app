@@ -2,18 +2,115 @@
     text-align: center;
 }
 
+.header-and-ADD {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.Add-participant {
+    padding: 7px 15px;
+    background-color: blue;
+    color: white;
+    border: 2px solid white;
+    border-radius: 7px;
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+
+#add-form {
+    background-color: rgba(212, 196, 196, 0.3);
+    margin-bottom: 50px;
+}
+
+#add-form input {
+    background-color: rgba(212, 196, 196, 0.001);
+}
+
 .no-participants {
     text-align: center;
     color: red;
 }
 
 table {
-    border: 2px solid black;
-    margin: 0 auto;
+    margin: 0 auto 100px;
     border-collapse: collapse;
+    text-align: center;
+    min-width: 800px;
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+}
+
+ tr:nth-child(odd) {
+    background-color: rgba(212, 196, 196, 0.4);
+}
+
+#first-row {
+    background-color: white;
+}
+
+.modal-body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 500;
+    padding-top: 250px;
+    top: 0;
+    background-color: rgba(20, 19, 19, 0.5);   
+}
+
+.modal-form {
+    width: 300px;
+    padding: 50px;
+    background-color: white;
+}
+
+.modal-form div label {
+    font-size: 20px;
+}
+
+.modal-form input {
+    padding: 8px;
+    border-width: 0 0 2px 0;
+}
+
+.modal-form input:focus {
+    outline-width: 0;
+}
+
+.modal-form button {
+    padding: 10px 0;
+    background-color: blue;
+    color: white;
+    border: 2px solid white;
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+.modal-form button:hover, .Add-participant:hover {
+    background-color: white;
+    color: blue;
+    border-color: blue;
+    cursor: pointer;
+}
+
+.edit-user-name-surname {
+    color: green;
+}
+
+.cancel {
+    color: blue;
+    font-weight: 700;
     text-align: center;
 }
 
-tr, th, td {
-    border: 2px solid black;
+.cancel:hover {
+    color: green;
+    cursor: pointer;
 }
