@@ -1,9 +1,9 @@
 import { regProps } from "./FormTypes";
 import './Form.css'
 
-const Form = ({fetch, children }: regProps) => {
+const Form = ({fetch, children, className, id }: regProps) => {
     return(
-        <form onSubmit={fetch}>
+        <form className={className} id={id} onSubmit={fetch}>
             {children}
         </form>
  )
