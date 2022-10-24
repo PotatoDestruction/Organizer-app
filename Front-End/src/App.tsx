@@ -8,16 +8,35 @@ import Participants from './components/Participants/Participants';
 
 
 function App() {
-  const token: string | null = localStorage.getItem("token");
- 
+
+
+  const routes = [
+    {
+      path: '/',
+      element: <Layout><Register /></Layout>
+    },
+    {
+      path: '/register',
+      element: <Layout><Register /></Layout>
+    },
+    {
+      path: '/login',
+      element: <Layout><Login /></Layout>
+    }, 
+    {
+      path: '/participants',
+      element: <Layout><Participants /></Layout>
+    }
+  ]
 
   return (
     <Routes>
-      <Route path='/' element={<Layout><Register /></Layout>} />
-      <Route path='/register' element={<Layout><Register /></Layout>} />
-      <Route path='/login' element={<Layout><Login /></Layout>} />      
-      <Route path='/participants' element={<Layout><Participants /></Layout>} /> 
-    </Routes>
+    {routes.map((route, num) => {
+      return (
+        <Route key={num} path={route.path} element={route.element} />
+      )
+    })}
+  </Routes>
   );
 }
 

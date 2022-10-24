@@ -27,6 +27,7 @@ const UpdateModal = ({ participant }: any): JSX.Element => {
                   },
                   body: JSON.stringify( updated )
                })
+               .then(res => res.json())
                .then(res => window.location.reload())
                .catch(error => console.log(error));
             }}>
